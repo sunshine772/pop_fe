@@ -4,7 +4,7 @@ Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-
 
 ## Servidor de desarrollo
 
-Ejecuta <code>ng serve</code> para un servidor de desarrollo. Navega a `http://localhost:4200/`. La aplicación se recargará automáticamente si cambias cualquiera de los archivos fuente.
+Ejecuta <pre><code>ng serve</code></pre> para un servidor de desarrollo. Navega a `http://localhost:4200/`. La aplicación se recargará automáticamente si cambias cualquiera de los archivos fuente.
 
 ## Generación de código
 
@@ -12,9 +12,8 @@ Ejecuta `ng generate component nombre-componente` para generar un nuevo componen
 
 ## Construcción
 
-Ejecuta <code>ng build</code> para construir el proyecto. Los archivos de construcción se almacenarán en el directorio `dist/`.
+Ejecuta <pre><code>ng build</code></pre> para construir el proyecto. Los archivos de construcción se almacenarán en el directorio `dist/`.
 
 ## Ejecución de pruebas unitarias
 
-Ejecuta <pre><code>ng test</code></pre>
-para ejecutar las pruebas unitarias a través de [Karma](https://karma-runner.github.io).
+Ejecuta <pre><code>ng test</code></pre> para ejecutar las pruebas unitarias a través de [Karma](https://karma-runner.github.io).
