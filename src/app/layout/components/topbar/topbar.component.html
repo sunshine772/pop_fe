@@ -1,0 +1,25 @@
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" routerLink="">
+        <!-- <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo"> -->
+        <img src="assets/layout/images/logo.png" alt="logo" />
+        <span class="logo-text">POPCORN</span>
+    </a>
+
+    <div class="centered-menu-container">
+        <p-menubar [model]="items" #menu> </p-menubar>
+    </div>
+
+    <div
+        #topbarmenu
+        class="layout-topbar-menu"
+        [ngClass]="{
+            'layout-topbar-menu-mobile-active':
+                layoutService.state.profileSidebarVisible
+        }"
+    >
+        <button class="p-link layout-topbar-button" (click)="logout()">
+            <i class="pi pi-power-off"></i>
+            <span>Logout</span>
+        </button>
+    </div>
+</div>
