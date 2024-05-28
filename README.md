@@ -16,4 +16,5 @@ Ejecuta <code>ng build</code> para construir el proyecto. Los archivos de constr
 
 ## Ejecución de pruebas unitarias
 
-Ejecuta <code>ng test</code> para ejecutar las pruebas unitarias a través de [Karma](https://karma-runner.github.io).
+Ejecuta <pre><code>ng test</code></pre>
+para ejecutar las pruebas unitarias a través de [Karma](https://karma-runner.github.io).
