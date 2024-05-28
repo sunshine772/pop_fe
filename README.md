@@ -8,7 +8,7 @@ Ejecuta <pre><code>ng serve</code></pre> para un servidor de desarrollo. Navega 
 
 ## Generación de código
 
-Ejecuta `ng generate component nombre-componente` para generar un nuevo componente. También puedes usar `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ejecuta <pre><code>ng generate component nombre-componente</code></pre> para generar un nuevo componente. También puedes usar <pre><code>g generate directive|pipe|service|class|guard|interface|enum|module</code></pre>
 
 ## Construcción
 
