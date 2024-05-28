@@ -1,6 +1,6 @@
 # pop
 
-Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 13.0.4.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 17.0.7.
 
 ## Servidor de desarrollo
 
