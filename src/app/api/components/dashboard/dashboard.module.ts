@@ -13,6 +13,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { RatingModule } from 'primeng/rating';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
     imports: [
@@ -29,6 +30,7 @@ import { InputTextModule } from 'primeng/inputtext';
         DropdownModule,
         RatingModule,
         DashboardsRoutingModule,
+        ImageModule
     ],
     declarations: [DashboardComponent],
 })

@@ -9,6 +9,7 @@ import { ComentarioService } from 'src/app/api/services/api/comentario/comentari
 import { EtiquetaService } from 'src/app/api/services/api/etiqueta/etiqueta.service';
 import { PeliculaService } from 'src/app/api/services/api/pelicula/pelicula.service';
 import { Pelicula } from '../../models/pelicula/pelicula';
+import { DataView } from 'primeng/dataview';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -46,7 +47,11 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    // onFilter(dv: DataView, event: Event) {
-    //     dv.filter((event.target as HTMLInputElement).value);
-    // }
+    getImagenUrl(imagen: string): string {
+        return 'data:image/png;base64,' + imagen;
+    }
+
+    onFilter(dv: DataView, event: Event) {
+        dv.filter((event.target as HTMLInputElement).value);
+    }
 }

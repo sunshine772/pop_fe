@@ -72,8 +72,7 @@
         <p-dialog [(visible)]="generoDialog" [style]="{ width: '450px' }" header="Genero" [modal]="true"
             class="p-fluid">
             <ng-template pTemplate="content">
-                <img [src]="'assets/demo/images/genero/' + genero.image" [alt]="genero.image" width="150"
-                    class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="genero.image" />
+ 
                 <div class="field">
                     <label for="nombre">Nombre</label>
                     <input type="text" pInputText id="nombre" [(ngModel)]="genero.nombre" required autofocus [ngClass]="{
@@ -96,11 +95,12 @@
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
                 <span *ngIf="generos">
-                    ¿Estás seguro que quieres eliminar <b>{{ genero.nombre }}</b>?</span>
+                    ¿Estás seguro que quieres eliminar <b>{{ genero.nombre }}</b>?
+                </span>
             </div>
             <ng-template pTemplate="footer">
                 <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
-                    (click)="deletegeneroDialog = false"></button>
+                    (click)="deleteGeneroDialog = false"></button>
                 <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
                     (click)="confirmDelete()"></button>
             </ng-template>

@@ -29,7 +29,7 @@ export class LoginComponent {
 
     valCheck: string[] = ['remember'];
     password!: string;
-    registerForm: FormGroup;
+    registerForm!: FormGroup;
     submitted: boolean = false;
 
     constructor(

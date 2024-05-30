@@ -1,0 +1,83 @@
+::ng-deep .image-drop-zone-body {
+    position: relative;
+    min-width: 100px;
+    min-height: 5rem;
+    max-height: 5rem;
+    border-radius: 0.2rem;
+    border: 1px dashed #ccc !important;
+    box-sizing: content-box;
+    transition: all 0.25s;
+    padding-bottom: 0.2rem;
+    background-color: transparent !important;
+}
+::ng-deep .img-border-yes {
+    background-color: rgba(8, 138, 254, 0.085);
+    border: 2px dashed rgba(8, 138, 254, 0.3);
+}
+::ng-deep .img-border-none {
+    background-color: rgba(8, 138, 254, 0);
+    border: 2px dashed rgba(8, 138, 254, 0);
+}
+.ngx-file-drop-body:hover ::ng-deep .img-border-none {
+    background-color: rgba(8, 138, 254, 0.085);
+    border: 2px dashed rgba(8, 138, 254, 0.3);
+}
+::ng-deep .image-drop-zone-body.ngx-file-drop__drop-zone--over {
+    background-color: rgba(8, 138, 254, 0.35) !important;
+}
+::ng-deep .image-content-body {
+    display: flex;
+    min-height: 5rem;
+    max-height: 5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+}
+.image-body img {
+    max-width: inherit;
+    max-height: inherit;
+}
+.image-body .img-none {
+    position: absolute;
+}
+.image-body .img-none .cloud-none {
+    font-size: 26px;
+    opacity: 0.5;
+}
+
+.image-body .img-yes {
+    display: none;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+}
+.ngx-file-drop-body:hover .img-yes {
+    display: flex;
+}
+.image-body .img-yes .open {
+    background-color: rgba(8, 138, 254, 0.85);
+    border: none !important;
+    box-shadow: none;
+    outline: none !important;
+    border-radius: 3px;
+    line-height: 1;
+    padding: 6px;
+    cursor: pointer;
+    color: #fff !important;
+    font-size: 13px;
+}
+.image-body .img-yes .delete {
+    background-color: rgba(8, 138, 254, 0.85);
+    border: none !important;
+    box-shadow: none;
+    outline: none !important;
+    border-radius: 3px;
+    line-height: 1;
+    padding: 6px;
+    cursor: pointer;
+    color: #fff !important;
+    font-size: 13px;
+}

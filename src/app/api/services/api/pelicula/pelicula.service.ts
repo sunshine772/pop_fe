@@ -42,10 +42,11 @@ export class PeliculaService {
         });
     }
 
-    updatePelicula(id: number, Pelicula: Pelicula): Observable<Pelicula> {
-        return this.http.put<Pelicula>(`${this.apiUrl}/${id}`, Pelicula, {
-            headers: this.getHeaders(),
-        });
+    updatePelicula(pelicula: Pelicula): Observable<Pelicula> {
+        return this.http.put<Pelicula>(
+            `${this.apiUrl}/${pelicula.pelicula_id}`,
+            pelicula
+        );
     }
 
     deletePelicula(id: number): Observable<Pelicula> {

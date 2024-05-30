@@ -1,1 +1,220 @@
-<p>pelicula works!</p>
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-4">
+      <p-toast></p-toast>
+
+      <p-table #dt [value]="peliculas" responsiveLayout="scroll" [rows]="5" [globalFilterFields]="cols"
+        [paginator]="true" [rowsPerPageOptions]="[5, 10, 15]" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas" [rowHover]="true"
+        dataKey="id_p" [columns]="cols">
+        <ng-template pTemplate="caption">
+          <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+            <h5 class="m-0">Peliculas</h5>
+            <span class="block mt-2 md:mt-0 p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" placeholder="Buscar..." class="w-full sm:w-auto"
+                (input)="onGlobalFilter(dt, $event)" />
+              <button pButton pRipple label="Nueva película" class="p-button-text ml-2" icon="pi pi-plus"
+                (click)="openNew()"></button>
+
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <ng-container *ngFor="let col of columns">
+              <th class="text-center" [pSortableColumn]="col.field">
+                <ng-container *ngIf="col.field !== 'n' && col.field !== 'opciones'">
+                  {{ col.header }}
+                  <p-sortIcon [field]="col.field"></p-sortIcon>
+                </ng-container>
+                <ng-container *ngIf="col.field === 'n' || col.field === 'opciones'">
+                  {{ col.header }}
+                </ng-container>
+              </th>
+            </ng-container>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-pelicula let-rowIndex="rowIndex">
+          <tr>
+            <td class="text-center">{{ rowIndex + 1 }}</td>
+            <td class="text-center">
+              <p-image *ngIf="pelicula.imagen.imagen" [src]="getImagenUrl(pelicula.imagen.imagen)" alt="Image"
+                width="50" [preview]="true"></p-image>
+              <p-image *ngIf="!pelicula.imagen.imagen" src="../../../../../assets/layout/images/404.jpg" alt="Image"
+                width="50" [preview]="true"></p-image>
+            </td>
+            <td class="text-center">
+              {{pelicula.titulo}}
+            </td>
+            <td class="text-center">
+              {{pelicula.sinopsis}}
+            </td>
+            <td class="text-center">
+              {{pelicula.genero.nombre}}
+            </td>
+            <td class="text-center">
+              <div class="flex">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-text p-button-primary mr-2"
+                  (click)="editPelicula(pelicula)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-text p-button-danger"
+                  (click)="deletePelicula(pelicula)"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td [attr.colspan]="columns.length" class="text-center p-text-center p-p-4">
+              <i class="pi pi-exclamation-triangle p-mr-2" style="font-size: 1rem"></i>
+              No hay datos disponibles
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog [(visible)]="peliculaDialog" [style]="{ width: '450px' }" header="Detalles película" [modal]="true"
+  class="p-fluid">
+
+  <ng-template pTemplate="content">
+    <form [formGroup]="peliculaForm">
+      <div class="field">
+        <label for="titulo">Titulo</label>
+        <input type="text" pInputText id="titulo" formControlName="titulo" [ngClass]="{
+            'ng-invalid ng-dirty ng-touch':
+              peliculaForm.get('titulo')?.invalid &&
+              (peliculaForm.get('titulo')?.dirty || submitted)
+          }" />
+        <small class="p-error" *ngIf="
+            peliculaForm.get('titulo')?.invalid &&
+            (peliculaForm.get('titulo')?.dirty || submitted)
+          ">
+          <span *ngIf="peliculaForm.get('titulo')?.hasError('required')">
+            El titulo es requerido.
+          </span>
+          <span *ngIf="peliculaForm.get('titulo')?.hasError('minlength')">
+            El titulo debe tener al menos 3 caracteres.
+          </span>
+          <span *ngIf="peliculaForm.get('titulo')?.hasError('maxlength')">
+            El titulo no debe tener más de 50 caracteres.
+          </span>
+        </small>
+      </div>
+      <div class="field">
+        <label for="sinopsis">Sinopsis</label>
+        <input type="text" pInputText id="sinopsis" formControlName="sinopsis" [ngClass]="{
+            'ng-invalid ng-dirty ng-touch':
+              peliculaForm.get('sinopsis')?.invalid &&
+              (peliculaForm.get('sinopsis')?.dirty || submitted)
+          }" />
+        <small class="p-error" *ngIf="
+            peliculaForm.get('sinopsis')?.invalid &&
+            (peliculaForm.get('sinopsis')?.dirty || submitted)
+          ">
+          <span *ngIf="peliculaForm.get('sinopsis')?.hasError('required')">
+            La sinopsis es requerido.
+          </span>
+          <span *ngIf="peliculaForm.get('sinopsis')?.hasError('minlength')">
+            La sinopsis debe tener al menos 3 caracteres.
+          </span>
+        </small>
+      </div>
+      <div class="field">
+        <label for="fecha_estreno">Fecha de estreno</label>
+        <p-calendar formControlName="fecha_estreno" appendTo="body" dateFormat="yy-mm-dd" [ngClass]="{
+            'ng-invalid ng-dirty ng-touch':
+              peliculaForm.get('fecha_estreno')?.invalid &&
+              (peliculaForm.get('fecha_estreno')?.dirty || submitted)
+          }"></p-calendar>
+        <small class="p-error" *ngIf="
+            peliculaForm.get('fecha_estreno')?.invalid &&
+            (peliculaForm.get('fecha_estreno')?.dirty || submitted)
+          ">
+          <span *ngIf="peliculaForm.get('fecha_estreno')?.hasError('required')">
+            La fecha de estreno es requerida.
+          </span>
+        </small>
+      </div>
+
+      <div class="field">
+        <label>Genero</label>
+        <p-dropdown 
+        formControlName="genero_id" 
+        [options]="generos" 
+        optionLabel="nombre"
+        optionValue="genero_id" 
+          emptyMessage="No se encontraron generos" 
+          placeholder="Seleccionar tipo de genero"
+          appendTo="body" 
+          [ngClass]="{
+            'ng-invalid ng-dirty ng-touch':
+              peliculaForm.get('genero_id')?.invalid &&
+              (peliculaForm.get('genero_id')?.dirty || submitted)
+          }"></p-dropdown>
+        <small class="p-error" *ngIf="
+            peliculaForm.get('genero_id')?.invalid &&
+            (peliculaForm.get('genero_id')?.dirty || submitted)
+          ">
+          El genero es requerido.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="id_img">Imagen</label>
+        <div class="image-body">
+          <ngx-file-drop class="ngx-file-drop-body" dropZoneClassName="image-drop-zone-body img-border-yes"
+            contentClassName="image-content-body" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
+            (onFileLeave)="fileLeave($event)" accept="image/jpeg, image/png">
+            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+              <img *ngIf="imageUrl" [src]="imageUrl">
+
+              <div *ngIf="!imageUrl" class="img-none d-flex flex-column text-center w-100">
+                <div class="cloud-icon">
+                  <button pButton pRipple icon="pi pi-image" class="p-button-text" (click)="openFileSelector()">
+                  </button>
+                </div>
+                <span>
+                  Arrastra y suelta una imagen aquí o haz click para seleccionar
+                </span>
+
+              </div>
+
+              <div *ngIf="imageUrl" class="img-yes">
+                <button pButton pRipple icon="pi pi-folder-open" class=" p-button-text p-button-success"
+                  (click)="openFileSelector()">
+                </button>
+                <button pButton pRipple icon="pi pi-trash" class=" p-button-text p-button-danger"
+                  (click)="fileRemove()">
+                </button>
+              </div>
+            </ng-template>
+          </ngx-file-drop>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="savePelicula()"></button>
+  </ng-template>
+
+</p-dialog>
+
+<p-dialog header="Confirmar" [(visible)]="deletePeliculaDialog" [style]="{ width: '450px' }" [closable]="false"
+  [draggable]="false" [resizable]="false">
+  <div class="confirmation-content">
+    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem;"></i>
+    <span *ngIf="peliculas">
+      ¿Estás seguro que quieres eliminar <b>{{ pelicula.titulo }}</b>?
+    </span>
+  </div>
+  <p-footer>
+    <button pButton pRipple label="No" icon="pi pi-times" class="p-button-text" (click)="hideDeleteDialog()"></button>
+    <button pButton pRipple label="Yes" icon="pi pi-check" class="p-button-text" (click)="confirmDelete()"></button>
+  </p-footer>
+</p-dialog>

@@ -1,11 +1,10 @@
-<!-- <div id="particles-js" class="particles"></div>
-<app-popcorn-background></app-popcorn-background> -->
+<!-- <div id="particles-js" class="particles"></div> -->
+<!-- <app-popcorn-background></app-popcorn-background> -->
 
 
 <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
     <div class="flex flex-column align-items-center justify-content-center">
-        <div
-            style="
+        <div style="
                 border-radius: 56px;
                 padding: 0.2rem;
                 background: linear-gradient(
@@ -14,8 +13,7 @@
                     var(--primary-color) 50%,
                     rgba(33, 150, 243, 0) 90%
                 );
-            "
-        >
+            ">
             <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius: 53px">
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <div class="text-center mb-5">
@@ -26,37 +24,25 @@
 
                     <div class="field">
                         <label for="username1" class="block text-900 text-xl font-medium mb-2">Username</label>
-                        <input
-                            id="username1"
-                            type="text"
-                            placeholder="Username address"
-                            pInputText
-                            class="w-full md:w-30rem mb-2 flex"
-                            style="padding: 1rem"
-                            formControlName="username"
+                        <input id="username1" type="text" placeholder="Username address" pInputText
+                            class="w-full md:w-30rem mb-2 flex" style="padding: 1rem" formControlName="username"
                             [ngClass]="{
                                 'ng-invalid ng-dirty ng-touch': registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || submitted)
-                            }"
-                        />
-                        <small class="p-error block" *ngIf="registerForm.get('username')?.errors?.required && (registerForm.get('username')?.dirty || submitted)">
+                            }" />
+                        <small class="p-error block"
+                            *ngIf="registerForm.get('username')?.hasError('required') && (registerForm.get('username')?.dirty || submitted)">
                             Username is required
                         </small>
                     </div>
                     <div class="field">
                         <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
-                        <p-password
-                            id="password1"
-                            placeholder="Password address"
-                            [toggleMask]="true"
-                            styleClass="mb-2 flex"
-                            inputStyleClass="w-full p-3 md:w-30rem"
-                            [feedback]="false"
-                            formControlName="password"
-                            [ngClass]="{
+                        <p-password id="password1" placeholder="Password address" [toggleMask]="true"
+                            styleClass="mb-2 flex" inputStyleClass="w-full p-3 md:w-30rem" [feedback]="false"
+                            formControlName="password" [ngClass]="{
                                 'ng-invalid ng-dirty ng-touch': registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || submitted)
-                            }"
-                        ></p-password>
-                        <small class="p-error" *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || submitted)">
+                            }"></p-password>
+                        <small class="p-error"
+                            *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || submitted)">
                             <span *ngIf="registerForm.get('password')?.hasError('required')">Password is required</span>
                         </small>
                     </div>
@@ -66,7 +52,8 @@
                             <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
                             <label for="rememberme1">Remember me</label>
                         </div>
-                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Forgot password?</a>
+                        <a class="font-medium no-underline ml-2 text-right cursor-pointer"
+                            style="color: var(--primary-color)">Forgot password?</a>
                     </div>
                     <button pButton pRipple label="Sign In" class="w-full p-3 text-xl" type="submit"></button>
                 </form>

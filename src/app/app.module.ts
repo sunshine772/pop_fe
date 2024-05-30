@@ -17,6 +17,7 @@ import { PhotoService } from './demo/service/photo.service';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './api/interceptors/auth/auth.interceptor';
 import { NotfoundComponent } from './api/components/notfound/notfound.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
@@ -33,6 +34,7 @@ import { NotfoundComponent } from './api/components/notfound/notfound.component'
         AuthInterceptor,
         JwtHelperService,
         { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+        provideAnimationsAsync(),
     ],
     bootstrap: [AppComponent],
 })

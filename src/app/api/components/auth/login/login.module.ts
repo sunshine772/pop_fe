@@ -18,8 +18,8 @@ import { PopcornBackgroundComponent } from 'src/app/api/components/utils/popcorn
         CheckboxModule,
         InputTextModule,
         FormsModule,
-        PasswordModule
+        PasswordModule,
     ],
-    declarations: [LoginComponent]
+    declarations: [LoginComponent, PopcornBackgroundComponent],
 })
-export class LoginModule { }
+export class LoginModule {}

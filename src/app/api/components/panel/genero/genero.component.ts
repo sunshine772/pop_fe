@@ -19,7 +19,7 @@ export class GeneroComponent {
     generos: Genero[] = [];
     cols: any[] = [];
 
-    submitted: boolean;
+    submitted= false;
 
     constructor(
         private generoService: GeneroService,
